@@ -5,18 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ApexPlanet Internship — Project Demos</title>
   <style>
-    body {
+    /* Reset & Fonts */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #8EC5FC, #E0C3FC);
-      color: #333;
-      text-align: center;
+      background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9)),
+                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
-      margin-top: 40px;
       font-size: 36px;
-      color: #222;
+      margin: 50px 20px 20px;
+      animation: fadeDown 1s ease forwards;
+      opacity: 0;
     }
 
     .projects {
@@ -24,47 +36,79 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
       padding: 40px;
-      max-width: 1000px;
-      margin: auto;
+      width: 100%;
+      max-width: 1100px;
     }
 
     .card {
-      background: #fff;
-      padding: 20px;
+      background: #ffffffcc;
       border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      padding: 25px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
     }
 
     .card h2 {
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 12px;
     }
 
     .card a {
       display: inline-block;
       padding: 10px 20px;
-      background: #4CAF50;
+      background: #007BFF;
       color: white;
       text-decoration: none;
       border-radius: 6px;
       margin-top: 8px;
+      transition: background 0.3s;
     }
 
     .card a:hover {
-      background: #388E3C;
+      background: #0056b3;
     }
 
     footer {
       margin: 40px 0 20px;
       font-size: 14px;
-      color: #555;
+      color: #444;
     }
+
+    /* Animations */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+    }
+
+    @keyframes fadeDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+
+    .card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.4s; }
+    .card:nth-child(3) { animation-delay: 0.6s; }
+    .card:nth-child(4) { animation-delay: 0.8s; }
+    .card:nth-child(5) { animation-delay: 1s; }
   </style>
 </head>
 <body>
