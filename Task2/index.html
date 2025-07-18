@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">MyWebApp</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main class="grid-container">
+        <!-- Contact Form -->
+        <section class="card">
+            <h2>Contact Form</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- To-Do List -->
+        <section class="card">
+            <h2>To-Do List</h2>
+            <div class="todo-container">
+                <input type="text" id="taskInput" placeholder="Add Task">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="taskList"></ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 MyWebApp. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* ✅ Vibrant Animated Gradient Background */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+
+/* ✅ Background Gradient Animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ✅ Quiz Container Styles */
+.quiz-container {
+  background: rgba(20, 20, 40, 0.9);
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  max-width: 400px;
+  width: 85%;
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+.quiz-header {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #f9ed69;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+.question {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #c9f9ff;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+}
+
+.answer {
+  background: linear-gradient(90deg, #ff758c, #ff7eb3, #ff9a9e);
+  padding: 14px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.answer:hover {
+  background: linear-gradient(90deg, #ff9a9e, #ff7eb3, #ff758c);
+  transform: translateY(-2px);
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #f0e68c;
+  font-weight: bold;
+}
+
+/* ✅ Clock Styles */
+.clock {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Start & Restart Button Styles */
+.start-btn, .restart-btn {
+  background-color: #ff758c;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  fo

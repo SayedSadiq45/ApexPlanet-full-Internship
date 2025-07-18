@@ -1,0 +1,171 @@
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background-color: #283593;
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+header h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 2rem;
+}
+
+nav {
+  margin-top: 0.5rem;
+}
+
+nav a {
+  margin: 0 1rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #ffeb3b;
+}
+
+main {
+  padding-top: 140px; /* Space for fixed header */
+}
+
+.content-section {
+  display: none;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content-section.active {
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  color: #283593;
+}
+
+.project {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fafafa;
+}
+
+.project h4 {
+  margin: 0 0 0.5rem;
+}
+
+/* Product Catalog Section */
+#productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: auto;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.product-card h4,
+.product-card p {
+  margin: 0.5rem 0;
+}
+
+/* To-Do List (Restored Better Style) */
+#todoList li {
+  background-color: #fafafa;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+}
+
+#todoList button {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#todoList button:hover {
+  background-color: #c62828;
+}
+
+#todoForm input {
+  padding: 0.6rem;
+  width: 70%;
+  margin-right: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#todoForm button {
+  padding: 0.6rem 1rem;
+  background-color: #283593;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#todoForm button:hover {
+  background-color: #1a237e;
+}
+
+/* Footer */
+footer {
+  background-color: #283593;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #productGrid {
+    grid-template-columns: 1fr; /* 1 per row on mobile */
+  }
+}
