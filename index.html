@@ -4,141 +4,405 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ApexPlanet Internship — Project Demos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Reset & Fonts */
+    /* Reset & Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+    
+    :root {
+      --primary: #6e48e6;
+      --secondary: #9d50ff;
+      --accent: #ff7a5f;
+      --light: #f8f9ff;
+      --dark: #1a1a2e;
+    }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9)),
-                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-      color: #222;
+      font-family: 'Segoe UI', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: var(--light);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.6;
     }
-
-    h1 {
-      font-size: 36px;
-      margin: 50px 20px 20px;
+    
+    /* Animated Background */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(157,80,255,0.4) 0%, rgba(157,80,255,0) 70%);
+      animation: float 15s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Header Styles */
+    .header-container {
+      text-align: center;
+      padding: 60px 20px 80px;
+      max-width: 900px;
+      position: relative;
+      z-index: 10;
       animation: fadeDown 1s ease forwards;
       opacity: 0;
     }
-
+    
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin: 0 0 20px;
+      background: linear-gradient(to right, #ff7a5f, #9d50ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #a6b0cf;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-weight: 300;
+    }
+    
+    /* Projects Grid */
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      padding: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 0 20px 60px;
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
+      position: relative;
+      z-index: 5;
     }
-
+    
+    /* Card Styles */
     .card {
-      background: #ffffffcc;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: rgba(30, 30, 50, 0.6);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       animation: fadeUp 1s ease forwards;
       opacity: 0;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(157, 80, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transform: perspective(1000px);
     }
-
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff7a5f, #9d50ff, #6e48e6);
+      z-index: -1;
+      border-radius: 18px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+    
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      transform: perspective(1000px) translateY(-10px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 15px 40px rgba(157, 80, 255, 0.4);
+      background: rgba(40, 40, 65, 0.7);
     }
-
+    
     .card h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .card a {
+      font-size: clamp(1.3rem, 2vw, 1.5rem);
+      margin-bottom: 15px;
+      color: white;
+      position: relative;
       display: inline-block;
-      padding: 10px 20px;
-      background: #007BFF;
+      padding-bottom: 8px;
+    }
+    
+    .card h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), var(--secondary));
+      border-radius: 3px;
+    }
+    
+    .card p {
+      color: #c0c9e6;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      min-height: 60px;
+    }
+    
+    .card a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
       color: white;
       text-decoration: none;
-      border-radius: 6px;
-      margin-top: 8px;
-      transition: background 0.3s;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 5px 15px rgba(157, 80, 255, 0.3);
+      z-index: 1;
     }
-
+    
+    .card a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--accent), var(--primary));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .card a:hover::before {
+      opacity: 1;
+    }
+    
     .card a:hover {
-      background: #0056b3;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(157, 80, 255, 0.5);
     }
-
+    
+    .card a i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .card a:hover i {
+      transform: translateX(3px);
+    }
+    
+    /* Footer Styles */
     footer {
-      margin: 40px 0 20px;
-      font-size: 14px;
-      color: #444;
+      margin: 20px 0 40px;
+      font-size: 0.9rem;
+      color: #a6b0cf;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 800px;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+      animation-delay: 0.8s;
     }
-
+    
+    footer p {
+      background: rgba(30, 30, 50, 0.6);
+      padding: 15px 30px;
+      border-radius: 50px;
+      display: inline-block;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(157, 80, 255, 0.15);
+    }
+    
     /* Animations */
     @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
       to {
         opacity: 1;
         transform: translateY(0);
       }
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
     }
-
+    
     @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
       to {
         opacity: 1;
         transform: translateY(0);
       }
+    }
+    
+    @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
       }
     }
-
+    
+    /* Staggered Card Animations */
     .card:nth-child(1) { animation-delay: 0.2s; }
     .card:nth-child(2) { animation-delay: 0.4s; }
     .card:nth-child(3) { animation-delay: 0.6s; }
     .card:nth-child(4) { animation-delay: 0.8s; }
     .card:nth-child(5) { animation-delay: 1s; }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .projects {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+      
+      .header-container {
+        padding: 40px 20px 60px;
+      }
+      
+      .card {
+        padding: 25px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .card a {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <h1>ApexPlanet Internship Project Showcase</h1>
+  <!-- Animated Background -->
+  <div class="background" id="particles"></div>
+  
+  <div class="header-container">
+    <h1>ApexPlanet Internship Project Showcase</h1>
+    <p class="subtitle">Explore the collection of projects completed during my internship journey. Each project demonstrates progressive learning and application of modern web development techniques.</p>
+  </div>
 
   <div class="projects">
     <div class="card">
       <h2>Task-1: Basic Web Page</h2>
-      <a href="https://sayedsadiq45.github.io/apexplanet-task1-demo/" target="_blank">View Demo</a>
+      <p>A foundational project focusing on core HTML and CSS principles to create a responsive, semantic web page.</p>
+      <a href="https://sayedsadiq45.github.io/apexplanet-task1-demo/" target="_blank">
+        View Demo <i class="fas fa-external-link-alt"></i>
+      </a>
     </div>
     <div class="card">
       <h2>Task-2: Contact Form & To-Do App</h2>
-      <a href="https://sayedsadiq45.github.io/apexplanet-task2-demo/" target="_blank">View Demo</a>
+      <p>Interactive form with validation and a task management application demonstrating JavaScript fundamentals.</p>
+      <a href="https://sayedsadiq45.github.io/apexplanet-task2-demo/" target="_blank">
+        View Demo <i class="fas fa-external-link-alt"></i>
+      </a>
     </div>
     <div class="card">
       <h2>Task-3: Quiz & API Project</h2>
-      <a href="https://sayedsadiq45.github.io/apexplanet-task3-demo/" target="_blank">View Demo</a>
+      <p>Dynamic quiz application with scoring system and API integration project showcasing asynchronous JavaScript.</p>
+      <a href="https://sayedsadiq45.github.io/apexplanet-task3-demo/" target="_blank">
+        View Demo <i class="fas fa-external-link-alt"></i>
+      </a>
     </div>
     <div class="card">
       <h2>Task-4: Portfolio & Catalog</h2>
-      <a href="https://sayedsadiq45.github.io/apexplanet-task4-demo/" target="_blank">View Demo</a>
+      <p>Professional portfolio website and product catalog with filtering capabilities and responsive layouts.</p>
+      <a href="https://sayedsadiq45.github.io/apexplanet-task4-demo/" target="_blank">
+        View Demo <i class="fas fa-external-link-alt"></i>
+      </a>
     </div>
     <div class="card">
       <h2>Task-5: E-Commerce Project</h2>
-      <a href="https://sayedsadiq45.github.io/apexplanet-task5-demo/" target="_blank">View Demo</a>
+      <p>Complete e-commerce solution with product listings, cart functionality, and checkout process.</p>
+      <a href="https://sayedsadiq45.github.io/apexplanet-task5-demo/" target="_blank">
+        View Demo <i class="fas fa-external-link-alt"></i>
+      </a>
     </div>
   </div>
 
-  <footer>© 2025 Sayed Mohammed Sadiq | ApexPlanet Internship</footer>
+  <footer>
+    <p>© 2025 Sayed Mohammed Sadiq | ApexPlanet Internship</p>
+  </footer>
 
+  <script>
+    // Create animated background particles
+    document.addEventListener('DOMContentLoaded', function() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 120 + 30;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100 + 100;
+        const delay = Math.random() * 15;
+        const duration = 15 + Math.random() * 15;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+      
+      // Add subtle parallax effect to cards
+      const cards = document.querySelectorAll('.card');
+      
+      document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.pageX) / 25;
+        const y = (window.innerHeight / 2 - e.pageY) / 25;
+        
+        cards.forEach(card => {
+          card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+      });
+    });
+  </script>
 </body>
 </html>
